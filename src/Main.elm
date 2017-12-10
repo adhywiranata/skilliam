@@ -5,8 +5,8 @@ import Html.Attributes exposing (src, class, href)
 import Navigation
 import UrlParser exposing (..)
 
-import Header
-import Footer
+import Core.Header
+import Core.Footer
 
 
 -- import Html.Events exposing (onWithOptions)
@@ -114,9 +114,9 @@ viewLandingPage model =
 view : Model -> Html Msg
 view model =
     div []
-        [ Header.view
+        [ Core.Header.view
         , viewContent (viewLandingPage model)
-        , Footer.view
+        , Core.Footer.view
         ]
 
 

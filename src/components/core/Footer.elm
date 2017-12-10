@@ -1,4 +1,4 @@
-module Footer exposing (..)
+module Core.Footer exposing (..)
 
 import Html exposing (..)
 
