@@ -2,9 +2,9 @@ module Main exposing (..)
 
 import Html exposing (Html, header, footer, text, div, h1, img, span, nav, ul, li, a, br)
 import Html.Attributes exposing (src, class, href)
-import Html.Events exposing (onWithOptions)
 import Navigation
-import Json.Decode
+-- import Html.Events exposing (onWithOptions)
+-- import Json.Decode
 
 ---- HELPERS ----
 
