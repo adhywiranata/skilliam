@@ -4,6 +4,8 @@ import Html exposing (Html, header, footer, text, div, h1, img, span, nav, ul, l
 import Html.Attributes exposing (src, class, href)
 import Navigation
 import UrlParser exposing (..)
+
+import Header
 -- import Html.Events exposing (onWithOptions)
 -- import Json.Decode
 
@@ -88,24 +90,6 @@ viewLocation : Navigation.Location -> Html Msg
 viewLocation location =
     div [] [ text (location.pathname ++ location.hash) ]
 
-viewHeader : Html Msg
-viewHeader =
-    header 
-        []
-        [ div [ class "logo" ] [ text "SKILLIAM" ]
-        , nav
-            [ class "nav" ]
-            [ ul
-                []
-                [ li [] [ viewLink "home" ]
-                , li [] [ viewLink "courses" ]
-                , li [] [ viewLink "learnings" ]
-                , li [] [ viewLink "profile" ]
-                , li [] [ viewLink "logout" ]
-                ]
-            ]
-        ]
-
 viewContent : Html Msg -> Html Msg
 viewContent innerView =
     div [ class "container" ]
@@ -133,7 +117,7 @@ viewLandingPage model =
 view : Model -> Html Msg
 view model =
     div []
-        [ viewHeader
+        [ Header.view
         , viewContent (viewLandingPage model)
         , viewFooter
         ]
