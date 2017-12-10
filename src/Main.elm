@@ -7,6 +7,8 @@ import UrlParser exposing (..)
 
 import Header
 import Footer
+
+
 -- import Html.Events exposing (onWithOptions)
 -- import Json.Decode
 
@@ -120,16 +122,6 @@ view model =
 
 
 ---- PROGRAM ----
-
-
--- main : Program Never Model Msg
--- main =
---     Html.program
---         { view = view
---         , init = init
---         , update = update
---         , subscriptions = always Sub.none
---         }
 
 main : Program Never Model Msg
 main =
