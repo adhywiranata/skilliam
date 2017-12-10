@@ -6,6 +6,7 @@ import Navigation
 import UrlParser exposing (..)
 
 import Header
+import Footer
 -- import Html.Events exposing (onWithOptions)
 -- import Json.Decode
 
@@ -95,12 +96,6 @@ viewContent innerView =
     div [ class "container" ]
         [ innerView ]
 
-viewFooter : Html Msg
-viewFooter =
-    footer
-        []
-        [ span [] [ text "copyright 2017 by skilliam" ] ]
-
 viewLandingPage : Model -> Html Msg
 viewLandingPage model =
     div
@@ -119,7 +114,7 @@ view model =
     div []
         [ Header.view
         , viewContent (viewLandingPage model)
-        , viewFooter
+        , Footer.view
         ]
 
 
