@@ -1,19 +1,22 @@
 module Main exposing (..)
 
-import Html exposing (Html, header, footer, text, div, h1, img, span, nav, ul, li)
-import Html.Attributes exposing (src, class)
-
+import Html exposing (Html, header, footer, text, div, h1, img, span, nav, ul, li, a, br)
+import Html.Attributes exposing (src, class, href)
+import Navigation
 
 ---- MODEL ----
 
 
 type alias Model =
-    {}
+  { history : List Navigation.Location -- history is a "stack" of routes
+  }
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( {}, Cmd.none )
+init : Navigation.Location -> ( Model, Cmd Msg )
+init location =
+  ( Model [ location ]
+  , Cmd.none
+  )
 
 
 
@@ -21,16 +24,29 @@ init =
 
 
 type Msg
-    = NoOp
+  = UrlChange Navigation.Location
+  | NoOp
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    ( model, Cmd.none )
+    case msg of
+        UrlChange location ->
+            ({ model | history = location :: model.history }, Cmd.none)
+        NoOp ->
+            (model, Cmd.none)
 
 
 
 ---- VIEW ----
+
+viewLink : String -> Html Msg
+viewLink name =
+    a [ href ("#" ++ name)] [ text name ]
+
+viewLocation : Navigation.Location -> Html Msg
+viewLocation location =
+    div [] [ text (location.pathname ++ location.hash) ]
 
 viewHeader : Html Msg
 viewHeader =
@@ -41,11 +57,11 @@ viewHeader =
             [ class "nav" ]
             [ ul
                 []
-                [ li [] [ text "Home" ]
-                , li [] [ text "Courses" ]
-                , li [] [ text "Learnings" ]
-                , li [] [ text "Profile" ]
-                , li [] [ text "Logout" ]
+                [ li [] [ viewLink "home" ]
+                , li [] [ viewLink "courses" ]
+                , li [] [ viewLink "learnings" ]
+                , li [] [ viewLink "profile" ]
+                , li [] [ viewLink "logout" ]
                 ]
             ]
         ]
@@ -61,19 +77,24 @@ viewFooter =
         []
         [ span [] [ text "copyright 2017 by skilliam" ] ]
 
-viewLandingPage : Html Msg
-viewLandingPage =
+viewLandingPage : Model -> Html Msg
+viewLandingPage model =
     div
         []
         [ h1 [] [ text "Landing Page" ]
         , span [] [ text "welcome to landing page" ]
+        , br [] []
+        , br [] []
+        , br [] []
+        , span [] [ text "HISTORY" ]
+        , div [] (List.map viewLocation model.history)
         ]
 
 view : Model -> Html Msg
 view model =
     div []
         [ viewHeader
-        , viewContent viewLandingPage
+        , viewContent (viewLandingPage model)
         , viewFooter
         ]
 
@@ -82,11 +103,19 @@ view model =
 ---- PROGRAM ----
 
 
-main : Program Never Model Msg
+-- main : Program Never Model Msg
+-- main =
+--     Html.program
+--         { view = view
+--         , init = init
+--         , update = update
+--         , subscriptions = always Sub.none
+--         }
+
 main =
-    Html.program
-        { view = view
-        , init = init
-        , update = update
-        , subscriptions = always Sub.none
-        }
+  Navigation.program UrlChange
+    { init = init
+    , view = view
+    , update = update
+    , subscriptions = (\_ -> Sub.none)
+    }
