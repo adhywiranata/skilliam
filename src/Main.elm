@@ -1,7 +1,7 @@
 module Main exposing (..)
 
-import Html exposing (Html, text, div, h1, img)
-import Html.Attributes exposing (src)
+import Html exposing (Html, text, div, h1, img, span, nav, ul, li)
+import Html.Attributes exposing (src, class)
 
 
 ---- MODEL ----
@@ -32,12 +32,40 @@ update msg model =
 
 ---- VIEW ----
 
+viewHeader : Html Msg
+viewHeader =
+    div [ class "header" ]
+        [ div [ class "logo" ] [ text "SKILLIAM" ]
+        , nav
+            [ class "nav" ]
+            [ ul
+                []
+                [ li [] [ text "Home" ]
+                , li [] [ text "Courses" ]
+                , li [] [ text "Learnings" ]
+                , li [] [ text "Profile" ]
+                , li [] [ text "Logout" ]
+                ]
+            ]
+        ]
+
+viewContent : Html Msg -> Html Msg
+viewContent innerView =
+    div [ class "container" ]
+        [ innerView ]
+
+viewFooter : Html Msg
+viewFooter =
+    div [ class "footer" ]
+        [ span [] [ text "copyright 2017 by skilliam" ] ]
 
 view : Model -> Html Msg
 view model =
     div []
-        [ img [ src "/logo.svg" ] []
+        [ viewHeader
         , h1 [] [ text "Skilliam" ]
+        , viewContent (div [] [ text "wowow" ])
+        , viewFooter
         ]
 
 
