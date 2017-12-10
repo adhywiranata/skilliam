@@ -1,6 +1,6 @@
 module Main exposing (..)
 
-import Html exposing (Html, text, div, h1, img, span, nav, ul, li)
+import Html exposing (Html, header, footer, text, div, h1, img, span, nav, ul, li)
 import Html.Attributes exposing (src, class)
 
 
@@ -34,7 +34,8 @@ update msg model =
 
 viewHeader : Html Msg
 viewHeader =
-    div [ class "header" ]
+    header 
+        []
         [ div [ class "logo" ] [ text "SKILLIAM" ]
         , nav
             [ class "nav" ]
@@ -56,14 +57,14 @@ viewContent innerView =
 
 viewFooter : Html Msg
 viewFooter =
-    div [ class "footer" ]
+    footer
+        []
         [ span [] [ text "copyright 2017 by skilliam" ] ]
 
 view : Model -> Html Msg
 view model =
     div []
         [ viewHeader
-        , h1 [] [ text "Skilliam" ]
         , viewContent (div [] [ text "wowow" ])
         , viewFooter
         ]
