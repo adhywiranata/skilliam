@@ -3,6 +3,7 @@ module Main exposing (..)
 import Html exposing (Html, header, footer, text, div, h1, img, span, nav, ul, li, a, br)
 import Html.Attributes exposing (src, class, href)
 import Navigation
+import UrlParser exposing (..)
 -- import Html.Events exposing (onWithOptions)
 -- import Json.Decode
 
@@ -17,8 +18,32 @@ import Navigation
 --     }
 --     (Json.Decode.succeed msg)
 
+matchers : Parser (Route -> a) a
+matchers =
+    oneOf
+        [ map LandingRoute top
+        ]
+
+parseLocation : Navigation.Location -> Route
+parseLocation location =
+    case (parseHash matchers location) of
+        Just route ->
+            route
+
+        Nothing ->
+            NotFoundRoute
+
+
+
 ---- MODEL ----
 
+type Route
+    = LandingRoute
+    | LoginRoute
+    | HomeRoute
+    | CoursesRoute
+    -- | CourseRoute courseId
+    | NotFoundRoute
 
 type alias Model =
   { history : List Navigation.Location -- history is a "stack" of routes
