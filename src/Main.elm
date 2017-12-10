@@ -2,7 +2,20 @@ module Main exposing (..)
 
 import Html exposing (Html, header, footer, text, div, h1, img, span, nav, ul, li, a, br)
 import Html.Attributes exposing (src, class, href)
+import Html.Events exposing (onWithOptions)
 import Navigation
+import Json.Decode
+
+---- HELPERS ----
+
+-- onClickPreventDefault : msg -> Html.Attribute msg
+-- onClickPreventDefault msg =
+--   onWithOptions
+--     "click"
+--     { preventDefault = True
+--     , stopPropagation = False
+--     }
+--     (Json.Decode.succeed msg)
 
 ---- MODEL ----
 
@@ -42,7 +55,9 @@ update msg model =
 
 viewLink : String -> Html Msg
 viewLink name =
-    a [ href ("#" ++ name)] [ text name ]
+    a
+        [ href name ]
+        [ text name ]
 
 viewLocation : Navigation.Location -> Html Msg
 viewLocation location =
@@ -112,6 +127,7 @@ view model =
 --         , subscriptions = always Sub.none
 --         }
 
+main : Program Never Model Msg
 main =
   Navigation.program UrlChange
     { init = init
