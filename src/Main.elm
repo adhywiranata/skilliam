@@ -61,11 +61,19 @@ viewFooter =
         []
         [ span [] [ text "copyright 2017 by skilliam" ] ]
 
+viewLandingPage : Html Msg
+viewLandingPage =
+    div
+        []
+        [ h1 [] [ text "Landing Page" ]
+        , span [] [ text "welcome to landing page" ]
+        ]
+
 view : Model -> Html Msg
 view model =
     div []
         [ viewHeader
-        , viewContent (div [] [ text "wowow" ])
+        , viewContent viewLandingPage
         , viewFooter
         ]
 
