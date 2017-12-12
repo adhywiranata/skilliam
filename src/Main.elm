@@ -1,13 +1,12 @@
 module Main exposing (..)
 
-import Html exposing (Html, header, footer, text, div, h1, img, span, nav, ul, li, a, br)
-import Html.Attributes exposing (src, class, href)
 import Navigation
-import UrlParser exposing (..)
+-- import UrlParser exposing (..)
 
-import Core.Header
-import Core.Footer
-
+import Models exposing (Model)
+import View exposing (view)
+import Msgs exposing (Msg)
+import Update exposing (update)
 
 -- import Html.Events exposing (onWithOptions)
 -- import Json.Decode
@@ -23,36 +22,36 @@ import Core.Footer
 --     }
 --     (Json.Decode.succeed msg)
 
-matchers : Parser (Route -> a) a
-matchers =
-    oneOf
-        [ map LandingRoute top
-        ]
+-- matchers : Parser (Route -> a) a
+-- matchers =
+--     oneOf
+--         [ map LandingRoute top
+--         ]
 
-parseLocation : Navigation.Location -> Route
-parseLocation location =
-    case (parseHash matchers location) of
-        Just route ->
-            route
+-- parseLocation : Navigation.Location -> Route
+-- parseLocation location =
+--     case (parseHash matchers location) of
+--         Just route ->
+--             route
 
-        Nothing ->
-            NotFoundRoute
+--         Nothing ->
+--             NotFoundRoute
 
 
 
 ---- MODEL ----
 
-type Route
-    = LandingRoute
-    | LoginRoute
-    | HomeRoute
-    | CoursesRoute
-    -- | CourseRoute courseId
-    | NotFoundRoute
+-- type Route
+--     = LandingRoute
+--     | LoginRoute
+--     | HomeRoute
+--     | CoursesRoute
+--     -- | CourseRoute courseId
+--     | NotFoundRoute
 
-type alias Model =
-  { history : List Navigation.Location -- history is a "stack" of routes
-  }
+-- type alias Model =
+--   { history : List Navigation.Location -- history is a "stack" of routes
+--   }
 
 
 init : Navigation.Location -> ( Model, Cmd Msg )
@@ -61,71 +60,11 @@ init location =
   , Cmd.none
   )
 
-
-
----- UPDATE ----
-
-
-type Msg
-  = UrlChange Navigation.Location
-  | NoOp
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        UrlChange location ->
-            ({ model | history = location :: model.history }, Cmd.none)
-        NoOp ->
-            (model, Cmd.none)
-
-
-
----- VIEW ----
-
-viewLink : String -> Html Msg
-viewLink name =
-    a
-        [ href name ]
-        [ text name ]
-
-viewLocation : Navigation.Location -> Html Msg
-viewLocation location =
-    div [] [ text (location.pathname ++ location.hash) ]
-
-viewContent : Html Msg -> Html Msg
-viewContent innerView =
-    div [ class "container" ]
-        [ innerView ]
-
-viewLandingPage : Model -> Html Msg
-viewLandingPage model =
-    div
-        []
-        [ h1 [] [ text "Landing Page" ]
-        , span [] [ text "welcome to landing page" ]
-        , br [] []
-        , br [] []
-        , br [] []
-        , span [] [ text "HISTORY" ]
-        , div [] (List.map viewLocation model.history)
-        ]
-
-view : Model -> Html Msg
-view model =
-    div []
-        [ Core.Header.view
-        , viewContent (viewLandingPage model)
-        , Core.Footer.view
-        ]
-
-
-
 ---- PROGRAM ----
 
 main : Program Never Model Msg
 main =
-  Navigation.program UrlChange
+  Navigation.program Msgs.UrlChange
     { init = init
     , view = view
     , update = update
