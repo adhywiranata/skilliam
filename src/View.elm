@@ -4,17 +4,13 @@ import Html.Attributes exposing (src, class, href)
 
 import Navigation exposing (Location)
 
-import Msgs exposing (Msg)
 import Models exposing (Model)
+import Msgs exposing (Msg)
 
 import Core.Header
 import Core.Footer
 
-viewLink : String -> Html Msg
-viewLink name =
-    a
-        [ href name ]
-        [ text name ]
+-- HELPER
 
 viewLocation : Navigation.Location -> Html Msg
 viewLocation location =

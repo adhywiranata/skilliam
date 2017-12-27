@@ -2,14 +2,28 @@ module Core.Header exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Msgs exposing (Msg)
+import Html.Events exposing (onWithOptions)
+import Json.Decode
 
-viewLink : String -> Html msg
+onClickPreventDefault : msg -> Html.Attribute msg
+onClickPreventDefault msg =
+  onWithOptions
+    "click"
+    { preventDefault = True
+    , stopPropagation = True
+    }
+    (Json.Decode.succeed msg)
+
+viewLink : String -> Html Msg
 viewLink name =
     a
-        [ href name ]
+        [ href name
+        , onClickPreventDefault (Msgs.RouteChange name)
+        ]
         [ text name ]
 
-view : Html msg
+view : Html Msg
 view =
   header 
       []

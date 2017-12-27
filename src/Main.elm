@@ -22,12 +22,6 @@ import Update exposing (update)
 --     }
 --     (Json.Decode.succeed msg)
 
--- matchers : Parser (Route -> a) a
--- matchers =
---     oneOf
---         [ map LandingRoute top
---         ]
-
 -- parseLocation : Navigation.Location -> Route
 -- parseLocation location =
 --     case (parseHash matchers location) of
