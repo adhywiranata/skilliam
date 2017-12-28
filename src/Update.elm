@@ -7,8 +7,10 @@ import Navigation exposing (..)
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Msgs.RouteChange newUrl ->
-            (model, Navigation.newUrl newUrl)
+        -- routeChange is a message to call a command, the Navigation.newUrl
+        Msgs.RouteChange url ->
+            (model, Navigation.newUrl url)
+        -- urlChange will add a new route to history stack
         Msgs.UrlChange location ->
             ({ model | history = location :: model.history }, Cmd.none)
         Msgs.NoOp ->
