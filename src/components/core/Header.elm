@@ -2,6 +2,7 @@ module Core.Header exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Models exposing (Model)
 import Msgs exposing (Msg)
 import Html.Events exposing (onWithOptions)
 import Json.Decode
@@ -23,11 +24,12 @@ viewLink name =
         ]
         [ text name ]
 
-view : Html Msg
-view =
+view : Model -> Html Msg
+view model =
   header 
       []
       [ div [ class "logo" ] [ text "SKILLIAM" ]
+      , div [] [ text (toString model.route) ]
       , nav
           [ class "nav" ]
           [ ul

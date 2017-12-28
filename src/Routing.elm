@@ -9,6 +9,7 @@ matchers : Parser (Route -> a) a
 matchers =
     oneOf
         [ map LandingRoute top
+        , map HomeRoute (s "home")
         , map CoursesRoute (s "courses")
         , map LandingRoute (s "landing")
         , map LoginRoute (s "login")
@@ -17,7 +18,7 @@ matchers =
 
 parseLocation : Location -> Route
 parseLocation location =
-    case (parseHash matchers location) of
+    case (parsePath matchers location) of
         Just route ->
             route
 

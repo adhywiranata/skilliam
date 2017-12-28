@@ -69,7 +69,7 @@ viewHomePage model =
 view : Model -> Html Msg
 view model =
     div []
-        [ Core.Header.view
+        [ Core.Header.view model
         , div [ class "container" ] [viewPage model]
         , Core.Footer.view
         ]

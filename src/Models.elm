@@ -3,8 +3,8 @@ module Models exposing (..)
 import Navigation exposing (Location)
 
 type Route
-    = LandingRoute
-    | LoginRoute
+    = LoginRoute
+    | LandingRoute
     | HomeRoute
     | CoursesRoute
     -- | CourseRoute courseId
