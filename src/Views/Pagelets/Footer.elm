@@ -1,4 +1,4 @@
-module Core.Footer exposing (..)
+module Pagelets.Footer exposing (view)
 
 import Html exposing (..)
 

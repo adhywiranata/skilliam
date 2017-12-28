@@ -1,4 +1,4 @@
-module Core.Header exposing (..)
+module Pagelets.Header exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

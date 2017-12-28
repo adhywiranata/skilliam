@@ -6,8 +6,8 @@ import Html.Attributes exposing (src, class, href)
 import Models exposing (Model)
 import Msgs exposing (Msg)
 
-import Core.Header
-import Core.Footer
+import Pagelets.Header
+import Pagelets.Footer
 
 import Pages.Landing
 import Pages.Home
@@ -32,7 +32,7 @@ viewPage model =
 view : Model -> Html Msg
 view model =
     div []
-        [ Core.Header.view model
+        [ Pagelets.Header.view model
         , div [ class "container" ] [viewPage model]
-        , Core.Footer.view
+        , Pagelets.Footer.view
         ]
