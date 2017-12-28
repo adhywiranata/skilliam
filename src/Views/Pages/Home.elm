@@ -2,7 +2,6 @@ module Pages.Home exposing (..)
 
 import Html exposing (Html, div, h1, span, text)
 import Models exposing (Model)
-import Navigation exposing (Location)
 
 import Msgs exposing (Msg)
 
