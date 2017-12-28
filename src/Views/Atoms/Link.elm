@@ -6,6 +6,7 @@ import Html.Events exposing (onWithOptions)
 import Msgs exposing (Msg)
 import Json.Decode
 
+-- add click default prevention to anchor
 onClickPreventDefault : msg -> Html.Attribute msg
 onClickPreventDefault msg =
   onWithOptions

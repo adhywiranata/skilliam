@@ -74,3 +74,11 @@ img {
   margin: 20px 0;
   max-width: 200px;
 }
+
+.card {
+  border: 1px solid rgba(0,0,0, .1);
+  padding: 10px;
+  margin: 10px;
+  width: auto;
+  height: auto;
+}

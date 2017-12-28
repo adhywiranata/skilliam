@@ -15,7 +15,7 @@ view model =
     div
         []
         [ H1.view "Home Page"
-        , Card.view (div [][ H2.view "hello", Text.view "lorem ipsum"])
-        , Card.view (div [][ H2.view "hola", Text.view "hoi"])
-        , Card.view (div [][ H2.view "yeah", Text.view "awesome"])
+        , Card.view ([ H2.view "hello", Text.view "lorem ipsum"])
+        , Card.view ([ H2.view "hola", Text.view "hoi"])
+        , Card.view ([ H2.view "yeah", Text.view "awesome"])
         ]
