@@ -7,51 +7,16 @@ import Models exposing (Model)
 import View exposing (view)
 import Msgs exposing (Msg)
 import Update exposing (update)
-
--- import Html.Events exposing (onWithOptions)
--- import Json.Decode
-
----- HELPERS ----
-
--- onClickPreventDefault : msg -> Html.Attribute msg
--- onClickPreventDefault msg =
---   onWithOptions
---     "click"
---     { preventDefault = True
---     , stopPropagation = False
---     }
---     (Json.Decode.succeed msg)
-
--- parseLocation : Navigation.Location -> Route
--- parseLocation location =
---     case (parseHash matchers location) of
---         Just route ->
---             route
-
---         Nothing ->
---             NotFoundRoute
-
-
-
----- MODEL ----
-
--- type Route
---     = LandingRoute
---     | LoginRoute
---     | HomeRoute
---     | CoursesRoute
---     -- | CourseRoute courseId
---     | NotFoundRoute
-
--- type alias Model =
---   { history : List Navigation.Location -- history is a "stack" of routes
---   }
+import Routing exposing (parseLocation)
 
 
 init : Navigation.Location -> ( Model, Cmd Msg )
 init location =
-  ( Model [ location ]
-  , Cmd.none
+  (
+    { route = parseLocation location
+    , history = [ location ]
+    }
+    , Cmd.none
   )
 
 ---- PROGRAM ----

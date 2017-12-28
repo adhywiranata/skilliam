@@ -11,5 +11,11 @@ type Route
     | NotFoundRoute
 
 type alias Model =
-  { history : List Navigation.Location -- history is a "stack" of routes
+  { route : Route
+  , history : List Navigation.Location -- history is a "stack" of routes
   }
+
+-- initialModel : Route -> Model
+-- initialModel route =
+--   { history = route
+--   }
