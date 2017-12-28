@@ -1,10 +1,9 @@
 module Main exposing (..)
 
 import Navigation
--- import UrlParser exposing (..)
 
 import Models exposing (Model)
-import View exposing (view)
+import Views.Root exposing (view)
 import Msgs exposing (Msg)
 import Update exposing (update)
 import Routing exposing (parseLocation)
