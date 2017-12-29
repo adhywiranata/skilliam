@@ -11,6 +11,7 @@ import Pagelets.Footer
 
 import Pages.Landing
 import Pages.Home
+import Pages.Login
 import Pages.Courses
 import Pages.NotFound
     
@@ -20,7 +21,7 @@ viewPage model =
         Models.HomeRoute ->
             Pages.Home.view model
         Models.LoginRoute ->
-            Pages.Home.view model
+            Pages.Login.view model
         Models.CoursesRoute ->
             Pages.Courses.view model
         Models.LandingRoute ->
@@ -33,6 +34,6 @@ view : Model -> Html Msg
 view model =
     div []
         [ Pagelets.Header.view model
-        , div [ class "container" ] [viewPage model]
+        , div [ class "container" ] [ viewPage model ]
         , Pagelets.Footer.view
         ]
