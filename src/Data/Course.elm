@@ -1,5 +1,6 @@
 module Data.Course exposing (..)
 
+import RemoteData
 import Json.Decode as Decode exposing (Decoder)
 import Json.Decode.Pipeline as Pipeline exposing (decode, required)
 
@@ -10,6 +11,10 @@ type alias Course =
   , description : String
   , competencies : List String
   }
+
+initialModel : RemoteData.RemoteData e a
+initialModel =
+  RemoteData.Loading
 
 decoder : Decoder Course
 decoder =

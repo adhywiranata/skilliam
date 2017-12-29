@@ -3,11 +3,11 @@ module Main exposing (..)
 import Navigation
 
 import Models exposing (Model)
+import Data.Course exposing (initialModel)
 import Views.Root exposing (view)
 import Msgs exposing (Msg)
 import Update exposing (update)
 import Routing exposing (parseLocation)
-import RemoteData
 import Commands exposing (fetchCourses)
 
 
@@ -16,7 +16,7 @@ init location =
   (
     { route = parseLocation location
     , history = [ location ]
-    , courses = RemoteData.Loading
+    , courses = Data.Course.initialModel
     }
     , fetchCourses
   )
