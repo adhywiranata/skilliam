@@ -7,6 +7,7 @@ import Views.Root exposing (view)
 import Msgs exposing (Msg)
 import Update exposing (update)
 import Routing exposing (parseLocation)
+import RemoteData
 
 
 init : Navigation.Location -> ( Model, Cmd Msg )
@@ -14,6 +15,7 @@ init location =
   (
     { route = parseLocation location
     , history = [ location ]
+    , courses = RemoteData.Loading
     }
     , Cmd.none
   )

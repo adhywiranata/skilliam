@@ -18,6 +18,8 @@ update msg model =
                 | route = parseLocation location
                 , history = location :: model.history
             }, Cmd.none)
+        Msgs.OnFetchCourses response ->
+            (model, Cmd.none)
         Msgs.NoOp ->
             (model, Cmd.none)
 
