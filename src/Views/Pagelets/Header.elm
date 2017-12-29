@@ -21,6 +21,7 @@ view model =
               , li [] [ Atoms.Link.view "courses" ]
               , li [] [ Atoms.Link.view "learnings" ]
               , li [] [ Atoms.Link.view "profile" ]
+              , li [] [ Atoms.Link.view "login" ]
               , li [] [ Atoms.Link.view "logout" ]
               ]
           ]

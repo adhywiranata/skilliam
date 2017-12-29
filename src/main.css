@@ -82,3 +82,40 @@ img {
   width: auto;
   height: auto;
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5px;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  padding: 5px;
+}
+
+.input-group input {
+  padding: 10px 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,.1);
+  font-size: 0.8rem;
+  outline: none;
+}
+
+.input-group input:focus {
+  border: 1px solid rgba(0,0,0,.3);
+}
+
+.input-group .btn {
+  width: 100%;
+  background-color: #353535;
+  color: #FFFFFF;
+}
