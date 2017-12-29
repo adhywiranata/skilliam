@@ -16,7 +16,7 @@ viewCourseCard : Data.Course.Course -> Html Msg
 viewCourseCard course =
     Card.view
         ([ H2.view course.title
-        , Text.view course.title
+        , Text.view course.description
         ])
 
 viewCourseList : List Data.Course.Course -> Html Msg

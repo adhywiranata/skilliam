@@ -7,7 +7,7 @@ type alias Course =
   { id : Int
   , userId : Int
   , title : String
-  , description : Maybe String
+  , description : String
   , competencies : List String
   }
 
@@ -17,5 +17,5 @@ decoder =
     |> required "id" Decode.int
     |> required "userId" Decode.int
     |> required "title" Decode.string
-    |> required "description" (Decode.nullable Decode.string)
+    |> required "description" Decode.string
     |> required "competencies" (Decode.list Decode.string)
