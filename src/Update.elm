@@ -19,7 +19,7 @@ update msg model =
                 , history = location :: model.history
             }, Cmd.none)
         Msgs.OnFetchCourses response ->
-            (model, Cmd.none)
+            ({ model | courses = response }, Cmd.none)
         Msgs.NoOp ->
             (model, Cmd.none)
 

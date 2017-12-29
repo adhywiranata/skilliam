@@ -8,6 +8,7 @@ import Msgs exposing (Msg)
 import Update exposing (update)
 import Routing exposing (parseLocation)
 import RemoteData
+import Commands exposing (fetchCourses)
 
 
 init : Navigation.Location -> ( Model, Cmd Msg )
@@ -17,7 +18,7 @@ init location =
     , history = [ location ]
     , courses = RemoteData.Loading
     }
-    , Cmd.none
+    , fetchCourses
   )
 
 ---- PROGRAM ----
