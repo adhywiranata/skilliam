@@ -6,14 +6,15 @@ import Html.Attributes exposing (src, class, href)
 import Models exposing (Model)
 import Msgs exposing (Msg)
 
-import Pagelets.Header
-import Pagelets.Footer
 
 import Pages.Landing
 import Pages.Home
 import Pages.Login
 import Pages.Courses
 import Pages.NotFound
+
+import Pagelets.Header
+import Pagelets.Footer
     
 viewPage : Model -> Html Msg
 viewPage model =
